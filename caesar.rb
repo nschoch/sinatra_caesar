@@ -38,13 +38,8 @@ output = caesar_cipher('brah', 1)
 
 
 get '/' do
-  if (phrase != nil and offset != nil)
-    phrase = params['phrase']
-    offset = params['offset'].to_i
-  else
-    phrase = 'What what in the butt'
-    offset = 1
-  end
+  phrase = (params['phrase'] != nil) ? params['phrase'] : "What what in the butt"
+  offset = (params['offset'] != nil) ? params['offset'].to_i : 1
   output = caesar_cipher(phrase,offset)
   message = "Output: #{output}"
 
