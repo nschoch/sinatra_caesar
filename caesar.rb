@@ -38,5 +38,17 @@ output = caesar_cipher('brah', 1)
 
 
 get '/' do
-  "Hi brah: #{output}"
+  if (phrase != nil and offset != nil)
+    phrase = params['phrase']
+    offset = params['offset'].to_i
+  else
+    phrase = 'What what in the butt'
+    offset = 1
+  end
+  output = caesar_cipher(phrase,offset)
+  message = "Output: #{output}"
+
+  locals = {:message => message}
+
+  erb :index, :locals => locals
 end
